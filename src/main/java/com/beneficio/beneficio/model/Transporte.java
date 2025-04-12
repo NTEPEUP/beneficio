@@ -1,5 +1,6 @@
 package com.beneficio.beneficio.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -13,7 +14,8 @@ public class Transporte {
 
     @Id
     private String placa;
-    private String tipo_placa;
+    @Column(name = "tipo_placa")
+    private int tipo_placa;
     private String marca;
     private String color;
     private String linea;
