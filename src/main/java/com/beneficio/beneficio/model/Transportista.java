@@ -5,13 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
 
 
-
+@DynamicInsert
 @Entity
 @Data
 @Table(name="transportista", schema = "agricultor")
@@ -29,8 +30,10 @@ public class Transportista implements Serializable {
     private String tipoLicencia;
     @Column(name = "fecha_vencimiento_licencia")
     private LocalDate fechaVencimientoLicencia;
-
+    @Column (nullable = true)
     private String estado;
+    @Column (nullable = true)
     private String observaciones;
-    private int usuario;
+    @Column (nullable = true)
+    private Integer usuario;
 }

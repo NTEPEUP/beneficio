@@ -29,7 +29,7 @@ public class SegurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));  // Frontend URL
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173","http://localhost:5173/layout/transportes"));  // Frontend URL
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));  // Métodos permitidos
         configuration.setAllowedHeaders(Arrays.asList("*"));  // Cabeceras permitidas
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
