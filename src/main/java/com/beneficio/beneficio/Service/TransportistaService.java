@@ -32,7 +32,7 @@ public class TransportistaService {
     }
 
     // Actualizar un transportista existente
-    public Transportista updateTransportista(long cui, Transportista transportistaDetails) {
+    /*public Transportista updateTransportista(long cui, Transportista transportistaDetails) {
         return transportistaRepository.findById(cui).map(transportista -> {
             transportista.setNombre(transportistaDetails.getNombre());
             transportista.setFechaNacimiento(transportistaDetails.getFechaNacimiento());
@@ -41,6 +41,33 @@ public class TransportistaService {
             transportista.setEstado(transportistaDetails.getEstado());
             transportista.setObservaciones(transportistaDetails.getObservaciones());
             transportista.setUsuario(transportistaDetails.getUsuario());
+            return transportistaRepository.save(transportista);
+        }).orElseThrow(() -> new RuntimeException("Transportista no encontrado con CUI: " + cui));
+    }*/
+
+    public Transportista updateTransportista(long cui, Transportista transportistaDetails) {
+        return transportistaRepository.findById(cui).map(transportista -> {
+            if (transportistaDetails.getNombre() != null) {
+                transportista.setNombre(transportistaDetails.getNombre());
+            }
+            if (transportistaDetails.getFechaNacimiento() != null) {
+                transportista.setFechaNacimiento(transportistaDetails.getFechaNacimiento());
+            }
+            if (transportistaDetails.getTipoLicencia() != null) {
+                transportista.setTipoLicencia(transportistaDetails.getTipoLicencia());
+            }
+            if (transportistaDetails.getFechaVencimientoLicencia() != null) {
+                transportista.setFechaVencimientoLicencia(transportistaDetails.getFechaVencimientoLicencia());
+            }
+            if (transportistaDetails.getEstado() != null) {
+                transportista.setEstado(transportistaDetails.getEstado());
+            }
+            if (transportistaDetails.getObservaciones() != null) {
+                transportista.setObservaciones(transportistaDetails.getObservaciones());
+            }
+            if (transportistaDetails.getUsuario() != null) {
+                transportista.setUsuario(transportistaDetails.getUsuario());
+            }
             return transportistaRepository.save(transportista);
         }).orElseThrow(() -> new RuntimeException("Transportista no encontrado con CUI: " + cui));
     }

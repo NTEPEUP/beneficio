@@ -25,7 +25,7 @@ public class TransporteService {
     public Optional<Transporte> getTransporteById(String placa) {
         return transporteRepository.findById(placa);
     }
-
+/*
     public Transporte updateTransporte(String placa, Transporte transporteDetails) {
         Transporte transporte = transporteRepository.findById(placa)
                 .orElseThrow(() -> new RuntimeException("Transporte no encontrado con placa: " + placa));
@@ -40,7 +40,39 @@ public class TransporteService {
         transporte.setUsuario(transporteDetails.getUsuario());
 
         return transporteRepository.save(transporte);
+    }*/
+public Transporte updateTransporte(String placa, Transporte transporteDetails) {
+    Transporte transporte = transporteRepository.findById(placa)
+            .orElseThrow(() -> new RuntimeException("Transporte no encontrado con placa: " + placa));
+
+    // Actualizar solo los campos proporcionados
+    if (transporteDetails.getTipo_placa() != 0) {
+        transporte.setTipo_placa(transporteDetails.getTipo_placa());
     }
+    if (transporteDetails.getMarca() != null) {
+        transporte.setMarca(transporteDetails.getMarca());
+    }
+    if (transporteDetails.getColor() != null) {
+        transporte.setColor(transporteDetails.getColor());
+    }
+    if (transporteDetails.getLinea() != null) {
+        transporte.setLinea(transporteDetails.getLinea());
+    }
+    if (transporteDetails.getModelo() != null) {
+        transporte.setModelo(transporteDetails.getModelo());
+    }
+    if (transporteDetails.getEstado() != null) {
+        transporte.setEstado(transporteDetails.getEstado());
+    }
+    if (transporteDetails.getObservaciones() != null) {
+        transporte.setObservaciones(transporteDetails.getObservaciones());
+    }
+    if (transporteDetails.getUsuario() != null) {
+        transporte.setUsuario(transporteDetails.getUsuario());
+    }
+
+    return transporteRepository.save(transporte);
+}
 
     public void deleteTransporte(String placa) {
         transporteRepository.deleteById(placa);

@@ -37,8 +37,20 @@ public class RestTransporte {
     }
 
     // Actualizar un transporte existente
-    @PutMapping("/{placa}")
+   /* @PutMapping("/{placa}")
     public ResponseEntity<Transporte> updateTransporte(@PathVariable String placa, @RequestBody Transporte transporteDetails) {
+        try {
+            Transporte transporteActualizado = transporteService.updateTransporte(placa, transporteDetails);
+            return ResponseEntity.ok(transporteActualizado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }*/
+
+    @PutMapping("/{placa}")
+    public ResponseEntity<Transporte> updateTransporte(
+            @PathVariable String placa,
+            @RequestBody Transporte transporteDetails) {
         try {
             Transporte transporteActualizado = transporteService.updateTransporte(placa, transporteDetails);
             return ResponseEntity.ok(transporteActualizado);
