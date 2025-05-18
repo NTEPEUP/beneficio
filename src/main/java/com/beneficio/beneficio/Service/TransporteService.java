@@ -21,6 +21,10 @@ public class TransporteService {
     public List<Transporte> getAllTransportes() {
         return transporteRepository.findAll();
     }
+    //Listar los transportes en estado Activo
+    public List<Transporte> getTransportesActivos(){
+        return transporteRepository.findByEstado("Activo");
+    }
 
     public Optional<Transporte> getTransporteById(String placa) {
         return transporteRepository.findById(placa);

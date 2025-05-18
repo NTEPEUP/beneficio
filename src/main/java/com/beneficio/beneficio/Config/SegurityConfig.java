@@ -45,7 +45,7 @@ public class SegurityConfig {
                 .and()
                 .authorizeHttpRequests(authRequest ->
                         authRequest
-                                .requestMatchers("/auth/**","/transportista/**","/transporte/**").permitAll()  // Permitir acceso a las rutas de login
+                                .requestMatchers("/auth/**","/transportista/**","/transporte/**","/tipoPlaca").permitAll()  // Permitir acceso a las rutas de login
                                 .anyRequest().authenticated()  // Requerir autenticación para otras rutas
                 )
                 .sessionManagement(sessionManager ->

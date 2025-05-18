@@ -22,7 +22,7 @@ public class Transporte {
     private String marca;
     private String color;
     private String linea;
-    private String   modelo;
+    private String modelo;
 
     @Column(nullable = true) // Permitir valores nulos
     private String estado;

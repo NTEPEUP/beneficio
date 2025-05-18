@@ -28,6 +28,12 @@ public class RestTransporte {
         return ResponseEntity.ok(transportes);
     }
 
+    //obtener transportes ACTIVOS
+    @GetMapping("/activos")
+    public List<Transporte> getTransporteActivos() {
+        return transporteService.getTransportesActivos();
+    }
+
     // Obtener un transporte por su placa
     @GetMapping("/{placa}")
     public ResponseEntity<Transporte> getTransporteById(@PathVariable String placa) {
