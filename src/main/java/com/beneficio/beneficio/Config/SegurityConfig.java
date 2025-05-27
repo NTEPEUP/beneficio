@@ -17,7 +17,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 
 
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -29,7 +28,7 @@ public class SegurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173","http://localhost:5173/layout/transportes"));  // Frontend URL
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:5173/layout/transportes"));  // Frontend URL
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));  // Métodos permitidos
         configuration.setAllowedHeaders(Arrays.asList("*"));  // Cabeceras permitidas
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -45,7 +44,7 @@ public class SegurityConfig {
                 .and()
                 .authorizeHttpRequests(authRequest ->
                         authRequest
-                                .requestMatchers("/auth/**","/transportista/**","/transporte/**","/tipoPlaca","pesaje/**","/cuentas/**").permitAll()  // Permitir acceso a las rutas de login
+                                .requestMatchers("/auth/**", "/transportista/**","/tipoPlaca", "pesaje/**", "/cuentas/**", "/qr/**", "/medidas/**", "/parcialidadesCafe/**").permitAll()  // Permitir acceso a las rutas de login
                                 .anyRequest().authenticated()  // Requerir autenticación para otras rutas
                 )
                 .sessionManagement(sessionManager ->
@@ -54,7 +53,6 @@ public class SegurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)  // Agregar el filtro de JWT
                 .build();
     }
-
 
 
 }

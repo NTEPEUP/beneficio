@@ -5,11 +5,12 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.util.Date;
+
 @Data
 @Entity
 
 @DynamicInsert
-@Table(name = "pesaje",schema = "agricultor")
+@Table(name = "pesaje", schema = "agricultor")
 public class Pesaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

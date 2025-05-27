@@ -11,8 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class AuthResponse {
-
-
     String token;
     private String role;  // Campo para el rol
+    private Long id;
 }

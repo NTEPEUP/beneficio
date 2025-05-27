@@ -11,6 +11,9 @@ import java.util.List;
 public class TipoPlacaService {
     @Autowired
     private TipoPlacaRepository tipoPlacaRepository;
-    public List<tipoPlaca> getAlltipoPlaca(){return tipoPlacaRepository.findAll();}
+
+    public List<tipoPlaca> getAlltipoPlaca() {
+        return tipoPlacaRepository.findAll();
+    }
 
 }

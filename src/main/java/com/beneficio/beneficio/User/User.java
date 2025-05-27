@@ -17,11 +17,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="users" ,schema = "cafe")
+@Table(name = "users", schema = "cafe")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long nit;
+    private Long id;
     @Basic
     @Column(nullable = false)
     private String username;

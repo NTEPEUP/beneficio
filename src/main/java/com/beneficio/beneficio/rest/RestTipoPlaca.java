@@ -18,7 +18,7 @@ public class RestTipoPlaca {
 
     //obtener todos los tipos de placas
     @GetMapping
-    public ResponseEntity<List<tipoPlaca>> getAlltipoPlaca(){
+    public ResponseEntity<List<tipoPlaca>> getAlltipoPlaca() {
         List<tipoPlaca> tipoPlaca = tipoPlacaService.getAlltipoPlaca();
         return ResponseEntity.ok(tipoPlaca);
     }

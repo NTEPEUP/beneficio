@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-@Service
 
+@Service
 
 
 public class TransportistaService {
@@ -76,7 +76,6 @@ public class TransportistaService {
     public void deleteTransportista(long cui) {
         transportistaRepository.deleteById(cui);
     }
-
 
 
 }

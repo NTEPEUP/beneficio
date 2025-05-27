@@ -1,9 +1,10 @@
-package com.beneficio.beneficio.controller;
+package com.beneficio.beneficio.rest;
 
 import com.beneficio.beneficio.model.Cuenta;
 import com.beneficio.beneficio.Service.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 import java.util.Optional;
