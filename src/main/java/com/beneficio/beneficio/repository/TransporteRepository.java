@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface TransporteRepository extends JpaRepository<Transporte, String> {
 List<Transporte> findByEstado(String estado);
+List<Transporte> findByUsuario(Integer usuario);
 }

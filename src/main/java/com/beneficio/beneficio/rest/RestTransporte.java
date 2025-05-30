@@ -2,6 +2,7 @@ package com.beneficio.beneficio.rest;
 
 import com.beneficio.beneficio.Service.TransporteService;
 import com.beneficio.beneficio.model.Transporte;
+import com.beneficio.beneficio.model.Transportista;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,14 @@ public class RestTransporte {
     @Autowired
     private TransporteService transporteService;
 
+
+
+    // Método para obtener transportistas por usuario
+    @GetMapping("/usuario/{usuario}")
+    public ResponseEntity<List<Transporte>> getTransportesPorUsuario(@PathVariable Integer usuario) {
+        List<Transporte> transporte = transporteService.getTransportesPorUsuario(usuario);
+        return ResponseEntity.ok(transporte);
+    }
     // Crear un nuevo transporte
     @PostMapping
     public ResponseEntity<Transporte> createTransporte(@RequestBody Transporte transporte) {

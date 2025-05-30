@@ -34,7 +34,7 @@ public class ParcialidadCafeService {
         return parcialidadCafeRepository.findById(id).map(parcialidad -> {
             parcialidad.setCuenta(parcialidadActualizada.getCuenta());
             parcialidad.setId_transporte(parcialidadActualizada.getId_transporte());
-            parcialidad.setId_fecha_recepcion_parcialidad(parcialidadActualizada.getId_fecha_recepcion_parcialidad());
+            parcialidad.setFecha_recepcion_parcialidad(parcialidadActualizada.getFecha_recepcion_parcialidad());
             parcialidad.setPeso_enviado(parcialidadActualizada.getPeso_enviado());
             parcialidad.setPeso_bascula(parcialidadActualizada.getPeso_bascula());
             parcialidad.setDiferencia_peso(parcialidadActualizada.getDiferencia_peso());

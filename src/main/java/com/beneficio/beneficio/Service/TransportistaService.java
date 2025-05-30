@@ -1,5 +1,6 @@
 package com.beneficio.beneficio.Service;
 
+import com.beneficio.beneficio.model.Transporte;
 import com.beneficio.beneficio.model.Transportista;
 import com.beneficio.beneficio.repository.TransportistaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,11 @@ public class TransportistaService {
 
     @Autowired
     private TransportistaRepository transportistaRepository;
+
+    // Método para listar transportistas por usuario
+    public List<Transportista> getTransportistasPorUsuario(Integer usuario) {
+        return transportistaRepository.findByUsuario(usuario);
+    }
 
     // Crear un nuevo transportista
     public Transportista createTransportista(Transportista transportista) {

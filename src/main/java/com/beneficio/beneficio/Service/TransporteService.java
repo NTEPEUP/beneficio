@@ -13,6 +13,12 @@ public class TransporteService {
     @Autowired
     private TransporteRepository transporteRepository;
 
+
+    // Método para listar transportes por usuario
+    public List<Transporte> getTransportesPorUsuario(Integer usuario) {
+        return transporteRepository.findByUsuario(usuario);
+    }
+
     public Transporte createTransporte(Transporte transporte) {
         return transporteRepository.save(transporte);
     }

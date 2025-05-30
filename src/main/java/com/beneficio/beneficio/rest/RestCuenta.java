@@ -2,7 +2,9 @@ package com.beneficio.beneficio.rest;
 
 import com.beneficio.beneficio.model.Cuenta;
 import com.beneficio.beneficio.Service.CuentaService;
+import com.beneficio.beneficio.model.Transporte;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -15,6 +17,15 @@ public class RestCuenta {
 
     @Autowired
     private CuentaService cuentaService;
+
+
+    // Método para obtener cuentas por agricultor
+    @GetMapping("/agricultor/{agricultor}")
+    public ResponseEntity<List<Cuenta>> getCuentasPorAgricultor(@PathVariable Integer agricultor) {
+        List<Cuenta> cuentas = cuentaService.getCuentasPorAgricultor(agricultor);
+        return ResponseEntity.ok(cuentas);
+    }
+
 
     // Crear o guardar una cuenta
     @PostMapping
@@ -38,6 +49,16 @@ public class RestCuenta {
     @PutMapping
     public Cuenta actualizarCuenta(@RequestBody Cuenta cuenta) {
         return cuentaService.actualizarCuenta(cuenta);
+    }
+
+    @PutMapping("peso/{cuenta}")
+    public ResponseEntity<Cuenta> updateCuenta(@PathVariable Long cuenta, @RequestBody Cuenta cuentaDetails) {
+        try {
+            Cuenta cuentaActualizada = cuentaService.updateCuenta(cuenta, cuentaDetails);
+            return ResponseEntity.ok(cuentaActualizada);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     // Eliminar una cuenta por ID
