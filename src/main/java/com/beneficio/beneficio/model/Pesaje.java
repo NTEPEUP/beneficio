@@ -16,7 +16,7 @@ public class Pesaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer medida;
-    private String peso_total_actual;
+    private float peso_total_actual;
     @Column(nullable = true)
     private String estado;
     @Column(nullable = true)

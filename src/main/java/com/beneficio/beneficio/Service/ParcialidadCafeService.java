@@ -1,6 +1,8 @@
 package com.beneficio.beneficio.Service;
 
+import com.beneficio.beneficio.model.Cuenta;
 import com.beneficio.beneficio.model.ParcialidadCafe;
+import com.beneficio.beneficio.repository.CuentaRepository;
 import com.beneficio.beneficio.repository.ParcialidadCafeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,30 @@ public class ParcialidadCafeService {
     @Autowired
     private ParcialidadCafeRepository parcialidadCafeRepository;
 
+    private final CuentaRepository cuentaRepository;
+
+    @Autowired
+    public ParcialidadCafeService(ParcialidadCafeRepository parcialidadCafeRepository, CuentaRepository cuentaRepository) {
+        this.parcialidadCafeRepository = parcialidadCafeRepository;
+        this.cuentaRepository = cuentaRepository;
+    }
+
+    public ParcialidadCafe registrarParcialidad(ParcialidadCafe parcialidadCafe) {
+        Cuenta cuenta = cuentaRepository.findById(parcialidadCafe.getCuenta().getCuenta())
+                .orElseThrow(() -> new RuntimeException("Cuenta no encontrada"));
+
+        if (cuenta.getPeso_enviado() < parcialidadCafe.getPeso_enviado()) {
+            throw new RuntimeException("La cuenta no tiene suficiente peso enviado disponible");
+        }
+
+        cuenta.setPeso_enviado(cuenta.getPeso_enviado() - (float) parcialidadCafe.getPeso_enviado());
+        cuentaRepository.save(cuenta);
+
+        return parcialidadCafeRepository.save(parcialidadCafe);
+    }
+
+
+
     // Obtener todas las parcialidades de café
     public List<ParcialidadCafe> obtenerTodasLasParcialidades() {
         return parcialidadCafeRepository.findAll();
@@ -24,10 +50,7 @@ public class ParcialidadCafeService {
         return parcialidadCafeRepository.findById(id);
     }
 
-    // Guardar una nueva parcialidad de café
-    public ParcialidadCafe guardarParcialidad(ParcialidadCafe parcialidadCafe) {
-        return parcialidadCafeRepository.save(parcialidadCafe);
-    }
+
 
     // Actualizar una parcialidad de café existente
     public ParcialidadCafe actualizarParcialidad(Long id, ParcialidadCafe parcialidadActualizada) {

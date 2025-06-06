@@ -13,8 +13,22 @@ import java.util.Optional;
 @RequestMapping("/parcialidadesCafe")
 public class RestParcialidadCafe {
 
+
+
+
     @Autowired
     private ParcialidadCafeService parcialidadCafeService;
+    public RestParcialidadCafe(ParcialidadCafeService parcialidadCafeService) {
+        this.parcialidadCafeService = parcialidadCafeService;
+    }
+
+    @PostMapping
+    public ResponseEntity<ParcialidadCafe> registrarParcialidad(@RequestBody ParcialidadCafe parcialidadCafe) {
+        ParcialidadCafe nuevaParcialidad = parcialidadCafeService.registrarParcialidad(parcialidadCafe);
+        return ResponseEntity.ok(nuevaParcialidad);
+    }
+
+
 
     // Obtener todas las parcialidades de café
     @GetMapping
@@ -30,11 +44,6 @@ public class RestParcialidadCafe {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Crear una nueva parcialidad de café
-    @PostMapping
-    public ParcialidadCafe crearParcialidad(@RequestBody ParcialidadCafe parcialidadCafe) {
-        return parcialidadCafeService.guardarParcialidad(parcialidadCafe);
-    }
 
     // Actualizar una parcialidad de café existente
     @PutMapping("/{id}")

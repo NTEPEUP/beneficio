@@ -19,7 +19,7 @@ public class Cuenta {
     private Integer agricultor;
 
     @Column(nullable = true)
-    private Integer id_pesaje;
+    private Long id_pesaje;
 
     @Column(nullable = true)
     private Integer id_estado;
